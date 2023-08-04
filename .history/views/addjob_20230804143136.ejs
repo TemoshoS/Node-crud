@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add job</title>
+</head>
+
+<body>
+
+    <%- include('partials/nav.ejs')%>
+        <div class="add-job-main-container">
+
+            <div class="div">
+
+                <form class="form" action="/add-job" method="post">
+                    <h3>post new job</h3>
+                    <input id="addJobTitle" type="text" placeholder="title" name="title"><br>
+                    <input id="addJobCompany" type="text" placeholder="company name" name="companyName"><br>
+                    <input id="addJobLocation" type="text" placeholder="location" name="location"><br>
+                    <textarea id="addJobDescription" rows="10" placeholder="Description" name="description"></textarea>
+                    <button id="postButton">POST</button>
+                </form>
+
+            </div>
+
+            <div class="div">
+                <h3>Posted Jobs</h3>
+                <table>
+                    <tr>
+                        <th>Title</th>
+                        <th>Company name</th>
+                        <th>Operations</th>
+                    </tr>
+                    <% if(responseArray.length> 0){%>
+                        <% responseArray.forEach((results)=>{%>
+
+                            <tr>
+                                <td class="sub">
+                                    <%=results.title%>
+                                </td>
+                                <td class="sub">
+                                    <%=results.companyName%>
+                                </td>
+                                <td class="buttons"><a onclick="deleteFuction(<%=JSON.stringify(results)%>)"
+                                        data-doc=<%results.id%>><button>delete</button></a>
+                                    <a onclick="showPopup(<%=JSON.stringify(results)%>)" data-doc=<>><button>update</button>
+                                </td></a>
+
+
+                            </tr>
+
+
+                            <% }) %>
+
+                                <% } else {%>
+
+                                    <h1>No jobs yet</h1>
+                                    <%}%>
+                </table>
+
+            </div>
+        </div>
+
+        <!-- popup-->
+        <div id="popup-form" class="popup">
+
+            <div class="popup-content">
+                <span onclick="hidePopup()" class="popup-close">&times;</span>
+                <h2>Update Details</h2>
+
+                <form id="update-form">
+                    <h3>post new job</h3>
+                    <input id="title" type="text" placeholder="title" name="title"><br>
+                    <input id="companyName" type="text" placeholder="company name" name="companyName"><br>
+                    <input id="location" type="text" placeholder="location" name="location"><br>
+                    <textarea id="description" rows="10" placeholder="Description" name="description"></textarea>
+                    <button>POST</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <script>
+            function deleteFuction(results) {
+                //console.log(results)
+
+                const endpoint = `delete/${results.id}`;
+                fetch(endpoint, {
+                    method: 'DELETE'
+                }).then(() => {
+                    console.log('DELETED')
+                }).catch((error) => {
+                    console.log(error)
+                })
+            }
+
+            function showPopup(res) {
+                console.log(res)
+                document.getElementById('popup-form').style.display = 'block'
+
+                document.getElementById('title').value = res.title
+                document.getElementById('companyName').value = res.companyName
+                document.getElementById('location').value = res.location
+                document.getElementById('description').value = res.description
+
+                document.getElementById('update-form').addEventListener('submit', () => {
+                    const title = document.getElementById('title').value
+                    const companyName = document.getElementById('companyName').value
+                    const location = document.getElementById('location').value
+                    const description = document.getElementById('description').value
+
+                    const data = { title, companyName, location, description }
+
+                    const endpoint = `update/${res.id}`;
+                    fetch(endpoint, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    }).then(response => response.json()).then((data) => {
+                        console.log(data)
+                    }).catch((error) => {
+                        console.log(error)
+                    })
+                })
+
+            }
+
+            function hidePopup() {
+                document.getElementById('popup-form').style.display = 'none'
+            }
+
+            const form = document.querySelector('form');
+            const submitButtons = document.querySelectorAll('#postButton');
+
+            submitButtons.forEach(button => {
+                button.addEventListener('click', validateForm);
+            });
+
+            function validateForm(event) {
+                event.preventDefault();
+
+                const title = document.querySelector('#addJobTitle');
+                const company = document.querySelector('#addJobCompany');
+                const location = document.querySelector('#addJobLocation');
+                const description = document.querySelector('#addJobDescription');
+
+                if (title.value.trim() === "") {
+                    alert('Please enter job title');
+                    return false;
+                }
+                if (company.value.trim() === "") {
+                    alert('Please enter company name');
+                    return false;
+                }
+                if (location.value.trim() === "") {
+                    alert('Please enter job location');
+                    return false;
+                }
+                if (description.value.trim() === "") {
+                    alert('Please enter job description');
+                    return false;
+                }
+
+                form.submit();
+            }
+
+        </script>
+ 
+</body>
+<%- include('partials/footer.ejs')%>
+</html>
