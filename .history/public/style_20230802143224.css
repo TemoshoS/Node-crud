@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+nav{
+ 
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid gray;
+}
+
+nav .logo{
+    padding: 1.5%;
+}
+
+nav .logo a{
+    text-decoration: none;
+    color: black;
+}
+nav ul{
+    width: 60%;
+    padding: 1%;
+    justify-content: flex-end;
+    display: flex;
+}
+
+ul li{
+    padding: 1%;
+    list-style: none;
+}
+
+li a{
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+}

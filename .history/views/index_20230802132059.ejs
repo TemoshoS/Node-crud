@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nodejs course</title>
+</head>
+
+<body>
+    <%- include('partials/nav.ejs')%>
+
+        <h2>Hello Codetribe manager</h2>
+        <p>Course</p>
+
+        <ul>
+            <% students.forEach(student=>{ %>
+             <li><%= student.name %>  <%=student.surname%> is <%=student.age%> ol</li>
+
+                <% }) %>
+
+        </ul>
+</body>
+
+</html>

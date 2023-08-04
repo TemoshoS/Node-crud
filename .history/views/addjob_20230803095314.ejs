@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add job</title>
+</head>
+<body>
+
+    <%- include('partials/nav.ejs')%>
+    <div class="add-job-main-container">
+
+        <div class="div">
+
+            <form class="form" action="">
+                <h3>create new job</h3>
+                <input type="text" placeholder="title"><br>
+                <input type="text" placeholder="company name"><br>
+                <input type="text" placeholder="location"><br>
+                <textarea rows="10" placeholder="Description"></textarea>
+                <button>POST</button>
+            </form>
+
+        </div>
+
+        <div class="div">
+            <h3>Posted Jobs</h3>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Company name</th>
+                <th>Operations</th>
+            </tr>
+        </table>
+            
+        </div>
+    </div>
+    
+</body>
+</html>

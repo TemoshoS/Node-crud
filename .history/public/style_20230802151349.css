@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+nav{
+ 
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid gray;
+}
+
+nav .logo{
+    padding: 1.5%;
+}
+
+nav .logo a{
+    text-decoration: none;
+    color: black;
+}
+nav ul{
+    width: 60%;
+    padding: 1%;
+    justify-content: flex-end;
+    display: flex;
+}
+
+ul li{
+    padding: 1%;
+    list-style: none;
+}
+
+li a{
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+}
+
+/* index.ejs style*/
+
+.main-jobs-container{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 3%;
+    padding: 3%;
+    padding-bottom: 5%;
+}
+
+.job-card{
+
+    width: 400px;
+    height: 200px;
+
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2%;
+    border: 1px solid black;
+}
+
+.created-details{
+width: 40%;
+display: flex;
+padding: 1%;
+
+}

@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+nav{
+    background-color: gold;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    float: left;
+}
+
+nav .log0{
+    padding: 1%;
+}
+
+nav .logo a{
+    text-decoration: none;
+    color: black;
+}
+nav ul{
+    width: 60%;
+    padding: 1%;
+    justify-content: flex-end;
+    display: flex;
+}
+
+ul li

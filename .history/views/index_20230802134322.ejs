@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head.ejs')%>
+
+<body>
+    <%- include('partials/nav.ejs')%>
+
+        <h2>Hello Codetribe manager</h2>
+        <p>Course</p>
+
+        <ul>
+            <% students.forEach(student=>{ %>
+             <li><%= student.name %>  <%=student.surname%> is <%=student.age%> year old</li>
+
+                <% }) %>
+
+        </ul>
+</body>
+
+</html>
